@@ -293,7 +293,14 @@ class WorkThread_anomaly_detection(QThread):
                                     #計算嚴重程度，顯示出來並加入測試記錄檔
                                     anomaly_rank = sum(channel_MSE_list > self.MSE_thres_List)
                                     if anomaly_rank >= 2: 
-                                        self.test_result = [temp[1][-1], f'Anomaly_{anomaly_rank}']     #【】
+                                        if anomaly_rank == 2: 
+                                            self.test_result = [temp[1][-1], 'Weak abnormal']     #【】
+                                        elif anomaly_rank == 3: 
+                                            self.test_result = [temp[1][-1], 'Abnormal']     #【】
+                                        elif anomaly_rank == 4: 
+                                            self.test_result = [temp[1][-1], 'Strong abnormal']     #【】
+                                        else: 
+                                            self.test_result = [temp[1][-1], 'Heavy abnormal']     #【】
                                         print(f'{temp[1][-1]}     超出閥值通道數為{anomaly_rank}，超出標準，故判斷為異常資料')
                                     else: 
                                         self.test_result = [temp[1][-1], 'Normal']     #【】
