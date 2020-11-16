@@ -291,10 +291,10 @@ class MainWindow(QMainWindow):
         print(f'result: {self.table2_show}')
         result_color_dict = {
             'Normal': 'green',
-            'Anomaly_2': 'orangered',
-            'Anomaly_3': 'red',
-            'Anomaly_4': 'maroon',
-            'Anomaly_5': 'purple',    
+            'Weak abnormal': 'orangered',
+            'Abnormal': 'red',
+            'Strong abnormal': 'maroon',
+            'Heavy abnormal': 'purple',    
         }
         Data = pd.read_table(r'{}'.format(self.config['Input data path']), sep = ',')
         Data = Data[['TimeStamp', ' Current']]
